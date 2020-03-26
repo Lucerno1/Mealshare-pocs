@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Putting User Input into JS Objects</title>
+    <style>
+        .formBox{
+            padding: 0.5rem 2rem;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="formBox">
+            <input type="text" id="title" placeholder="Title"/>
+        </div>
+        <div class="formBox">
+            <input type="number" id="price" placeholder="Price"/>
+        </div>
+        <div class="formBox">
+            <button id="btn">Click to Add</button>
+        </div>
+        <div id="msg">
+            <pre></pre>
+        </div>
+    </form>
+
+
+    <script>
+        let meals = [];
+        // example {id:1592304983049, title: 'Meatballs', price: 5}
+        const addMeal = (ev)=>{
+            ev.preventDefault();  //to stop the form submitting
+            let meal = {
+                id: meals.length,
+                title: document.getElementById('title').value,
+                price: document.getElementById('price').value
+            }
+            meals.push(meal);
+
+            //clear the form for the next entries
+            document.querySelector('form').reset();
+
+            //show the saved js object
+            let pre = document.querySelector('#msg pre');
+            pre.textContent = '\n' + JSON.stringify(meals, '\t', 2);
+
+            //saving to localStorage
+            localStorage.setItem('MyMealList', JSON.stringify(meals) );
+        }
+        document.addEventListener('DOMContentLoaded', ()=>{
+            document.getElementById('btn').addEventListener('click', addMeal);
+        });
+    </script>
+</body>
+</html>
