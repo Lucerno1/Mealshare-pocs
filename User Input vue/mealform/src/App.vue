@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MealList v-bind:meals="meals" />
   </div>
 </template>
 
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MealList from './components/MealList';
+
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MealList
+    
+  },
+  data(){
+    return{
+      meals: [
+        {
+          id:1,
+          title: "Spaghetti",
+          price: 3
+        },
+        {
+          id:2,
+          title: "Meatballs",
+          price: 4
+        },
+        {
+          id:3,
+          title: "Pancakes",
+          price: 2
+        },
+      ]
+    }
   }
 }
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
 }
 </style>
