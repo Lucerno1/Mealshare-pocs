@@ -20,9 +20,7 @@
                         <v-card >
                             <v-card-title class="headline grey lighten-2" primary-title>Set pickup time </v-card-title>
                             <v-card-actions class="d-flex flex-column">
-                                <v-time-picker v-model="time"></v-time-picker>
-                                <p>{{time}}</p>
-
+                                <v-time-picker format="24hr" :allowed-minutes="(m) => m % 15 == 0" v-model="time"></v-time-picker>
                                 <!-- Close the pop up dialog btn -->
                                 <v-btn width="100%" class="mt-3" color="primary" depressed x-large  @click="dialog = false">Apply</v-btn>
                             </v-card-actions>
